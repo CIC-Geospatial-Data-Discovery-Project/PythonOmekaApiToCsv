@@ -72,7 +72,10 @@ for resource in available_resources:
             for d in D['element_texts']:
                 k = d['element']['name']
                 v = d['text']
-                D[k] = v
+                if not D.has_key(k):
+                    D[k] = v
+                else:
+                    D[k] = ' | '.join([D[k],v])
         if 'page_blocks' in D:
                 text = [ d['text'] for d in D['page_blocks'] ]
                 D['Text'] = ' | '.join(text)
